@@ -1,6 +1,6 @@
 #include "big_shift.h"
 
-static size_t assign_hex(const char *src, unsigned char **dst, size_t slen) {
+static size_t atoi_hex(const char *src, unsigned char **dst, size_t slen) {
 	size_t bits = slen * 4;
 	size_t bytes = bits % 8 ? bits / 8 + 1 : bits / 8;
 	*dst = malloc(bytes);
@@ -25,7 +25,7 @@ static size_t assign_hex(const char *src, unsigned char **dst, size_t slen) {
 	return bytes;
 }
 
-static size_t assign_bin(const char *src, unsigned char **dst, size_t slen) {
+static size_t atoi_bin(const char *src, unsigned char **dst, size_t slen) {
 	size_t bytes = slen % 8 ? slen / 8 + 1 : slen / 8;
 	*dst = malloc(bytes);
 	if (!(*dst)) {
@@ -50,8 +50,8 @@ static size_t assign_bin(const char *src, unsigned char **dst, size_t slen) {
 	return bytes;
 }
 
-size_t assign(const char *src, unsigned char **dst, base_t base) {
-	static size_t (*fp[3])(const char *, unsigned char **, size_t) = { assign_hex, assign_hex, assign_bin };
+size_t atoi_bigint(const char *src, unsigned char **dst, base_t base) {
+	static size_t (*fp[3])(const char *, unsigned char **, size_t) = { atoi_hex, atoi_hex, atoi_bin };
 
 	size_t slen = strlen(src);
 	if (!slen) {
