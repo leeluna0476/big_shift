@@ -21,5 +21,6 @@ void left_shift(const unsigned char *big_int, unsigned char *buf, size_t size, s
 
 // returns bytes of the converted data pointed by *dst
 size_t assign(const char *src, unsigned char **dst, base_t base);
+char *itoa_bigint(const unsigned char *big_int, size_t size, base_t base);
 
 #endif
