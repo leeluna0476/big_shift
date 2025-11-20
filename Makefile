@@ -21,7 +21,7 @@ $(OBJS_DIR):
 	mkdir -p $@
 
 clean:
-	$(RM) $(OBJS) $(OBJS_DIR)
+	$(RM) -r $(OBJS) $(OBJS_DIR)
 
 fclean:
 	$(MAKE) clean
